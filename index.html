@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="Angular-App">
+    <head>
+        <title>To Do List</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script type='text/javascript' src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    </head>
+
+    <body ng-controller="mainController" id = "FormToDoList">
+        <h1>My ToDo List</h1>
+        <form ng-submit="addWork()">
+            <input type="text" placeholder="Description" ng-model="toDoWork.description" id = "inputDescription">
+            <input type="text" placeholder="Time" ng-model="toDoWork.time" id = "inputTime">
+            <!-- <input type="text" placeholder="Priority" ng-model="toDoWork.priority" id = "stylePriority"> -->
+            <input list="myDatalist" placeholder="Priority" ng-model="toDoWork.priority" id = "inputPriority"> 
+                    <datalist id="myDatalist"> 
+                        <option value="High">
+                        <option value="Medium">
+                        <option value="Low">
+                    </datalist>
+            <button type="submit">Enter</button>
+        </form>
+        <table id = "table-body">
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>Time</th>
+                    <th>Priority</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="toDoWork in toDoWorkList | orderBy: 'priority'">
+                    <td>{{toDoWork.description}}</td>
+                    <td>{{toDoWork.time}}</td>
+                    <td>{{toDoWork.priority}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <script type='text/javascript' src='script.js'></script>
+        <script type='text/javascript' src='script-localstorage.js'></script>
+    </body>
+</html>
